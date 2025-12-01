@@ -1,0 +1,9 @@
+# Enforce consistent text file normalization
+* text=auto
+# Treat common binary files as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
