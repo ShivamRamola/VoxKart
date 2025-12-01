@@ -1,0 +1,5 @@
+                ========== Backend =========
+- npm init
+- npm i express
+- npm i mongoose nodemon bcrypt.js cors dotenv jsonwebtoken cookie-parser
+
