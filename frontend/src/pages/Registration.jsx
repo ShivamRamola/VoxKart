@@ -3,8 +3,10 @@ import Logo from "../assets/voxkart-logo.png";
 import { useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import { IoEyeOutline } from "react-icons/io5";
+import { IoEye } from "react-icons/io5";
 
 function Registration() {
+  let [show, setShow] = React.useState(false);
   let navigate = useNavigate();
   return (
     <div className="w-screen min-h-screen bg-gradient-to-l from-[#141414] to-[#0c2025] text-white flex flex-col items-center justify-start">
@@ -18,7 +20,7 @@ function Registration() {
 
       <div className="w-full mt-6 flex flex-col items-center justify-center gap-1">
         <span className="text-3xl font-semibold">Registration Page</span>
-        <span className="text-md">Welcome to VoxKart. Place your order</span>
+        <span className="text-md">Welcome to VoxCart. Place your order</span>
       </div>
 
       <div className="max-w-2xl w-[40%] h-[450px] bg-[rgba(0,0,0,0.15)] border border-[#096969] backdrop-blur-md rounded-lg flex items-center justify-center mt-6">
@@ -28,7 +30,7 @@ function Registration() {
         >
           <button
             type="button"
-            className="w-[90%] h-36 bg-[#42656c] rounded-lg flex items-center justify-center gap-4 py-4 cursor-pointer hover:brightness-110"
+            className="w-[90%] h-15 bg-[#42656c] rounded-lg flex items-center justify-center gap-4 py-4 cursor-pointer hover:brightness-110"
           >
             <img className="w-8 h-8" src={google} alt="Google Logo" />
             <span className="text-lg">Register with Google</span>
@@ -53,9 +55,18 @@ function Registration() {
             <input
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Password"
-              type="password"
+              type={show ? "text" : "password"}
             />
-            <IoEyeOutline className="w-[20px] h-[20px] cursor-pointer absolute right-[10%] top-[65%] " />
+            {!show && (
+              <IoEyeOutline
+                className="w-[20px] h-[20px] cursor-pointer absolute right-[18%] top-[67%] "
+                onClick={() => setShow((prev) => !prev)}
+              />
+            )}
+            <IoEye
+              className="w-[20px] h-[20px] cursor-pointer absolute right-[18%] top-[67%] "
+              onClick={() => setShow((prev) => !prev)}
+            />
 
             <button className="w-[90%] p-3 rounded bg-[#3324b4]">
               Create Account
