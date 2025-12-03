@@ -9,22 +9,22 @@ function Registration() {
   return (
     <div className="w-screen min-h-screen bg-gradient-to-l from-[#141414] to-[#0c2025] text-white flex flex-col items-center justify-start">
       <div
-        className="w-full h-20 flex items-center justify-start px-6 gap-3 cursor-pointer"
+        className="w-full h-20 flex items-center justify-start px-6  cursor-pointer"
         onClick={() => navigate("/")}
       >
-        <img className="w-12 h-12 mr-3" src={Logo} alt="VoxKart Logo" />
+        <img className="w-12 h-12 pr-2" src={Logo} alt="VoxKart Logo" />
         <h1 className="text-2xl font-semibold">VoxCart</h1>
       </div>
 
       <div className="w-full mt-6 flex flex-col items-center justify-center gap-1">
-        <span className="text-2xl font-semibold">Registration Page</span>
-        <span className="text-sm">Welcome to VoxKart. Place your order</span>
+        <span className="text-3xl font-semibold">Registration Page</span>
+        <span className="text-md">Welcome to VoxKart. Place your order</span>
       </div>
 
-      <div className="max-w-2xl w-[60%] h-[500px] bg-[rgba(0,0,0,0.15)] border border-[#096969] backdrop-blur-md rounded-lg flex items-center justify-center mt-6">
+      <div className="max-w-2xl w-[40%] h-[450px] bg-[rgba(0,0,0,0.15)] border border-[#096969] backdrop-blur-md rounded-lg flex items-center justify-center mt-6">
         <form
           action=""
-          className="max-w-[600px] w-[80%] h-[90%] flex flex-col items-center justify-start gap-5 py-6"
+          className="max-w-[600px] w-[80%] h-[100%] flex flex-col items-center justify-start gap-5 py-6"
         >
           <button
             type="button"
