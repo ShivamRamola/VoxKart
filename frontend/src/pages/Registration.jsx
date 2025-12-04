@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../assets/voxkart-logo.png";
 import { useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
+import { authDataContext } from "../context/authContext.jsx";
 
 function Registration() {
+  let { serverUrl } = React.useContext(authDataContext);
   let [show, setShow] = React.useState(false);
+  let [name, setName] = React.useState("");
+  let [email, setEmail] = React.useState("");
+  let [password, setPassword] = React.useState("");
+
   let navigate = useNavigate();
+
+  // PreventDefault uses
+  const handleSignup = async (e) => {
+    try {
+      e.preventDefault();
+    } catch (err) {
+      console.log("Signup error:", err);
+    }
+  };
   return (
     <div className="w-screen min-h-screen bg-gradient-to-l from-[#141414] to-[#0c2025] text-white flex flex-col items-center justify-start">
       <div
