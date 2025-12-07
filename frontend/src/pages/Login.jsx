@@ -71,7 +71,6 @@ const handleLogin = async (e) => {
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Email"
               required
-              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
@@ -79,7 +78,6 @@ const handleLogin = async (e) => {
               placeholder="Password"
               type={show ? "text" : "password"}
               required
-              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             {!show && (
