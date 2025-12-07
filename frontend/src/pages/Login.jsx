@@ -4,10 +4,31 @@ import { useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
-function Login() {
-  let [show, setShow] = React.useState(false);
+import { authDataContext } from "../context/authContext";
 
-  let navigate = useNavigate();
+function Login() {}
+let [show, setShow] = React.useState(false);
+let [email, setEmail] = React.useState("");
+let [password, setPassword] = React.useState("");
+let { serverUrl } = React.useContext(authDataContext);
+
+let navigate = useNavigate();
+const handleLogin = async (e) => {
+  try {
+    e.preventDefault();
+    result = await axios.post(
+      `${serverUrl}/api/auth/login`,
+      {
+        email,
+        password,
+      },
+      { withCredentials: true }
+    );
+    console.log("Login successful:", result.data);
+  } catch (err) {
+    console.log("Login error:", err);
+  }
+
   return (
     <div className="w-screen min-h-screen bg-gradient-to-l from-[#141414] to-[#0c2025] text-white flex flex-col items-center justify-start">
       <div
@@ -28,6 +49,7 @@ function Login() {
       <div className="max-w-2xl w-[40%] h-[430px] bg-[rgba(0,0,0,0.15)] border border-[#096969] backdrop-blur-md rounded-lg flex items-center justify-center mt-5">
         <form
           action=""
+          onSubmit={handleLogin}
           className="max-w-[600px] w-[80%] h-[100%] flex flex-col items-center justify-start gap-5 py-6"
         >
           <button
@@ -45,16 +67,20 @@ function Login() {
           </div>
 
           <div className="w-full flex flex-col items-center gap-4 mt-2">
-            {/* Placeholder for form fields: name, email, password */}
-
             <input
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Password"
               type={show ? "text" : "password"}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {!show && (
               <IoEyeOutline
@@ -82,6 +108,6 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

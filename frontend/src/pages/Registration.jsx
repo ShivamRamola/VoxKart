@@ -5,7 +5,7 @@ import google from "../assets/google.png";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 import { authDataContext } from "../context/authContext.jsx";
-
+import axios from "axios";
 function Registration() {
   let { serverUrl } = React.useContext(authDataContext);
   let [show, setShow] = React.useState(false);
@@ -17,8 +17,18 @@ function Registration() {
 
   // PreventDefault uses
   const handleSignup = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
+      const result = await axios.post(
+        `${serverUrl}/api/auth/registration`,
+        {
+          name,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      console.log("Signup successful:", result.data);
     } catch (err) {
       console.log("Signup error:", err);
     }
@@ -41,6 +51,7 @@ function Registration() {
       <div className="max-w-2xl w-[40%] h-[450px] bg-[rgba(0,0,0,0.15)] border border-[#096969] backdrop-blur-md rounded-lg flex items-center justify-center mt-6">
         <form
           action=""
+          onSubmit={handleSignup}
           className="max-w-[600px] w-[80%] h-[100%] flex flex-col items-center justify-start gap-5 py-6"
         >
           <button
@@ -62,15 +73,24 @@ function Registration() {
             <input
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Name"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <input
               className="w-[90%] p-3 rounded bg-transparent border border-gray-600"
               placeholder="Password"
               type={show ? "text" : "password"}
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             {!show && (
               <IoEyeOutline
